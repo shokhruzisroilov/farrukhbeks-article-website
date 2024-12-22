@@ -1,0 +1,6 @@
+export { default as Home } from './Home'
+export { default as Events } from './Events'
+export { default as Grants } from './Grants'
+export { default as NotFound } from './error/NotFound'
+export { default as Login } from './auth/Login'
+export { default as Register } from './auth/Register'
