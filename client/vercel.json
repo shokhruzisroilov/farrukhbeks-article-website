@@ -5,11 +5,5 @@
 			"destination": "/index.html"
 		}
 	],
-	"framework": "vite",
-	"routes": [
-		{
-			"src": "/(.*)",
-			"dest": "/index.html"
-		}
-	]
+	"framework": "vite"
 }
