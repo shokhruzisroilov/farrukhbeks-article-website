@@ -5,7 +5,7 @@ import {
 	FaInstagram,
 	FaTelegram,
 	FaXmark,
-	FaXTwitter,
+	FaTwitter,
 } from 'react-icons/fa6'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -58,7 +58,7 @@ const Header = () => {
 					))}
 				</ul>
 
-				{/* Menu icons */}
+				{/* Menu icons for larger devices */}
 				<div className='text-white lg:flex gap-4 items-center hidden'>
 					<a href='/' className='hover:text-orange-500'>
 						<FaFacebook />
@@ -70,7 +70,7 @@ const Header = () => {
 						<FaTelegram />
 					</a>
 					<a href='/' className='hover:text-orange-500'>
-						<FaXTwitter />
+						<FaTwitter />
 					</a>
 					{user ? (
 						<UserProfile user={user} handleLogout={handleLogout} />
@@ -83,8 +83,20 @@ const Header = () => {
 					)}
 				</div>
 
-				{/* Mobile menu button */}
-				<div className='md:hidden'>
+				{/* Mobile menu button and profile icon */}
+				<div className='md:hidden flex items-center gap-4'>
+					{/* Profile icon for mobile */}
+					{user ? (
+						<UserProfile user={user} handleLogout={handleLogout} />
+					) : (
+						<Link to='/login'>
+							<button className='bg-orange-500 px-6 py-2 font-medium rounded hover:bg-white hover:text-orange-500 transition-all duration-200 ease-in'>
+								Kirish
+							</button>
+						</Link>
+					)}
+
+					{/* Mobile menu button */}
 					<button className='cursor-pointer' onClick={toggleMenu}>
 						{isMenuOpen ? (
 							<FaXmark className='w-5 h-5' />
@@ -98,8 +110,8 @@ const Header = () => {
 			{/* Mobile menu items */}
 			<div>
 				<ul
-					className={`md:hidden gap-12 text-lg block space-y-4 px-4 py-6 bg-white ${
-						isMenuOpen ? 'fixed top-0 left-0 w-full' : 'hidden'
+					className={`md:hidden gap-12 text-lg space-y-4 px-4 py-6 bg-white transition-all ease-in-out duration-300 ${
+						isMenuOpen ? 'block' : 'hidden'
 					}`}
 				>
 					{navItems.map(item => (
@@ -113,30 +125,6 @@ const Header = () => {
 							</NavLink>
 						</li>
 					))}
-					<li>
-						{user ? (
-							<div className='text-center'>
-								<span className='block text-black mb-2'>
-									Salom, {user.username}!
-								</span>
-								<button
-									onClick={() => {
-										handleLogout()
-										toggleMenu()
-									}}
-									className='bg-red-600 px-4 py-2 text-white rounded hover:bg-red-700'
-								>
-									Chiqish
-								</button>
-							</div>
-						) : (
-							<Link to='/login' onClick={toggleMenu}>
-								<button className='bg-orange-500 px-6 py-2 font-medium rounded hover:bg-orange-700 text-white w-full'>
-									Kirish
-								</button>
-							</Link>
-						)}
-					</li>
 				</ul>
 			</div>
 		</header>

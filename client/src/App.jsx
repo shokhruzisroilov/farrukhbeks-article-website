@@ -1,13 +1,11 @@
 import { Routes, Route } from 'react-router-dom'
 import Layouts from './layouts/Layouts'
 import { Events, Grants, Home, Login, NotFound, Register } from './pages'
-import { loginSuccess } from './store/slices/authSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 const App = () => {
-	const { user, token } = useSelector(state => state.auth)
-	console.log(user, token)
+	// const { user, token } = useSelector(state => state.auth)
+	// console.log(user, token)
 
 	return (
 		<Routes>
