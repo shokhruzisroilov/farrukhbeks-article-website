@@ -74,13 +74,6 @@ const Articles = () => {
 					onCategoryChange={handleCategoryChange}
 				/>
 
-				{/* Show message if no articles are found */}
-				{noArticlesFound && (
-					<p className='text-center text-xl text-gray-500 mt-8'>
-						Hozircha maqolalar mavjud emas.
-					</p>
-				)}
-
 				{/* Article cards section */}
 				<div className='flex flex-col lg:flex-row gap-12'>
 					<div className='grid md:grid-cols-2 grid-cols-1 gap-8'>
@@ -95,6 +88,12 @@ const Articles = () => {
 							/>
 						))}
 					</div>
+					{/* Show message if no articles are found */}
+					{noArticlesFound && (
+						<p className='text-center text-xl text-gray-500 mt-8 w-full'>
+							Hozircha maqolalar mavjud emas.
+						</p>
+					)}
 					<SlideBar />
 				</div>
 			</div>
