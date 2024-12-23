@@ -1,22 +1,21 @@
 const mongoose = require('mongoose')
 
-// Maqola sxemasi
-const articleSchema = new mongoose.Schema({
-	title: { type: String, required: true },
-	image: String,
-	category: String,
-	published_date: {
-		type: Date,
-		default: Date.now,
+const articleSchema = new mongoose.Schema(
+	{
+		title: { type: String, required: true },
+		image: String,
+		category: String,
+		reading_time: {
+			type: String,
+			default: '0 minutes',
+		},
+		content: { type: String, required: true },
+		tags: [String],
 	},
-	reading_time: {
-		type: String,
-		default: '0 minutes',
-	},
-	content: { type: String, required: true },
-	tags: [String],
-})
+	{ timestamps: true }
+)
 
+// Pre-save hook to calculate reading time
 articleSchema.pre('save', function (next) {
 	if (this.content) {
 		const wordCount = this.content.split(' ').length

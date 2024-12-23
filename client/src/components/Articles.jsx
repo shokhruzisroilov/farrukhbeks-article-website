@@ -17,6 +17,7 @@ const Articles = () => {
 
 	const { articles, loading, error } = useSelector(state => state.articles)
 	const [filteredArticles, setFilteredArticles] = useState([])
+
 	const categories = [
 		'Barchasi',
 		'Biznes',
@@ -66,36 +67,35 @@ const Articles = () => {
 	const noArticlesFound = filteredArticles.length === 0
 
 	return (
-		<div className='w-full'>
-			<div className='max-w-7xl m-auto px-4 '>
-				{/* Category selection component */}
-				<CategorySelection
-					categories={categories}
-					onCategoryChange={handleCategoryChange}
-				/>
+		<div className='max-w-7xl m-auto px-4 '>
+			{/* Category selection component */}
+			<CategorySelection
+				categories={categories}
+				onCategoryChange={handleCategoryChange}
+			/>
 
-				{/* Article cards section */}
-				<div className='flex flex-col lg:flex-row gap-12'>
-					<div className='grid md:grid-cols-2 grid-cols-1 gap-8'>
-						{filteredArticles.map(article => (
-							<ArticleCard
-								key={article._id}
-								image={article.image}
-								title={article.title}
-								content={article.content}
-								published_date={article.published_date}
-								category={article.category}
-							/>
-						))}
-					</div>
-					{/* Show message if no articles are found */}
-					{noArticlesFound && (
-						<p className='text-center text-xl text-gray-500 mt-8 w-full'>
-							Hozircha maqolalar mavjud emas.
-						</p>
-					)}
-					<SlideBar />
+			{/* Article cards section */}
+			<div className='flex flex-col lg:flex-row gap-12'>
+				<div className='grid md:grid-cols-2 grid-cols-1 gap-8'>
+					{filteredArticles.map(article => (
+						<ArticleCard
+							key={article._id}
+							id={article._id}
+							image={article.image}
+							title={article.title}
+							content={article.content}
+							createdAt={article.createdAt}
+							category={article.category}
+						/>
+					))}
 				</div>
+				{/* Show message if no articles are found */}
+				{noArticlesFound && (
+					<p className='text-center text-xl text-gray-500 mt-8 w-full'>
+						Hozircha maqolalar mavjud emas.
+					</p>
+				)}
+				<SlideBar />
 			</div>
 		</div>
 	)

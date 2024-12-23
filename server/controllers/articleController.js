@@ -4,7 +4,9 @@ const { articleSchema } = require('../validators/articleValidator')
 // 📌 1. Barcha maqolalarni olish
 exports.getArticles = async (req, res) => {
 	try {
-		const articles = await Article.find()
+		const articles = await Article.find().sort({
+			createdAt: -1,
+		})
 		res.json(articles)
 	} catch (err) {
 		res.status(500).json({ error: err.message })

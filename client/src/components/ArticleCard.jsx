@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
-const ArticleCard = ({ title, image, content, published_date, category }) => {
+const ArticleCard = ({ id, title, image, content, createdAt, category }) => {
+	// Matnni qisqartirish funksiyasi
 	const truncateText = (text, wordLimit) => {
 		const words = text.split(' ')
 		if (words.length > wordLimit) {
@@ -9,24 +10,25 @@ const ArticleCard = ({ title, image, content, published_date, category }) => {
 		return text
 	}
 
+	// Sanani formatlash funksiyasi
 	const formatDate = dateString => {
+		if (!dateString) return 'Noma’lum sana'
+
 		const date = new Date(dateString)
-		const options = {
-			year: '2-digit',
-			month: '2-digit',
+		if (isNaN(date)) return 'Noto‘g‘ri sana formati'
+
+		return date.toLocaleString('en-US', {
+			month: 'short',
 			day: '2-digit',
+			year: 'numeric',
 			hour: '2-digit',
 			minute: '2-digit',
-		}
-		const formattedDate = date.toLocaleString('uz-UZ', options)
-		return formattedDate.replace(',', '').replace('/', '-')
+			hour12: true,
+		})
 	}
 
 	return (
-		<Link
-			to={`/articles/${title}`}
-			className='p-5 shadow-lg rounded-lg bg-white'
-		>
+		<Link to={`/articles/${id}`} className='p-5 shadow-lg rounded-lg bg-white'>
 			<div>
 				<img
 					src={image}
@@ -36,12 +38,16 @@ const ArticleCard = ({ title, image, content, published_date, category }) => {
 			</div>
 			<div className='flex justify-between items-center mt-2'>
 				<p className='text-sm text-[#fc3c1a]'> {category}</p>
-				<p className='text-sm text-gray-500'>{formatDate(published_date)}</p>
+				<p className='text-sm text-gray-500'>{formatDate(createdAt)}</p>
 			</div>
 			<h3 className='mt-2 mb-2 text-xl font-semibold text-gray-800 hover:text-blue-600 transition-colors'>
 				{truncateText(title, 5)}
 			</h3>
-			<p className='mb-2 text-gray-600 text-sm'>{truncateText(content, 10)}</p>
+			{/* HTML formatdagi contentni render qilish */}
+			<p
+				className='mb-2 text-gray-600 text-sm'
+				dangerouslySetInnerHTML={{ __html: truncateText(content, 10) }}
+			/>
 		</Link>
 	)
 }

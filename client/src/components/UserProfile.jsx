@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function UserProfile({ user, handleLogout }) {
 	const [isOpen, setIsOpen] = useState(false)
@@ -38,9 +39,11 @@ function UserProfile({ user, handleLogout }) {
 						</li>
 						{/* isAdmin true bo'lsa ko'rsatiladi */}
 						{user.isAdmin && (
-							<li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>
-								<a href='/dashboard'>Dashboard</a>
-							</li>
+							<Link to='/admin'>
+								<li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'>
+									Dashboard
+								</li>
+							</Link>
 						)}
 						<li
 							onClick={handleLogout}
