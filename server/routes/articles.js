@@ -19,10 +19,10 @@ const validateArticle = (req, res, next) => {
 }
 
 // CRUD yo'llari
-router.get('/articles', getArticles) // Barcha maqolalar
-router.get('/articles/:id', getArticleById) // Bitta maqola
-router.post('/articles/create', validateArticle, createArticle) // Yangi maqola
-router.put('/articles/update/:id', validateArticle, updateArticle) // Maqolani yangilash
-router.delete('/articles/delete/:id', deleteArticle) // Maqolani o‘chirish
+router.get('/', getArticles) // Barcha maqolalar
+router.get('/:id', getArticleById) // Bitta maqola
+router.post('/create', validateArticle, createArticle) // Yangi maqola
+router.put('/update/:id', validateArticle, updateArticle) // Maqolani yangilash
+router.delete('/delete/:id', deleteArticle) // Maqolani o‘chirish
 
 module.exports = router

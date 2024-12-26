@@ -4,28 +4,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* HTML: <div class="loader"></div> */
 .loader {
-	width: 45px;
-	aspect-ratio: 1;
-	--c: no-repeat linear-gradient(red 0 0);
-	background: var(--c) 0% 50%, var(--c) 50% 50%, var(--c) 100% 50%;
-	background-size: 20% 100%;
-	animation: l1 1s infinite linear;
+	width: 40px;
+	height: 40px;
+	--c: no-repeat linear-gradient(orange 0 0);
+	background: var(--c), var(--c), var(--c), var(--c);
+	background-size: 21px 21px;
+	animation: l5 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
 }
-@keyframes l1 {
+@keyframes l5 {
 	0% {
-		background-size: 20% 100%, 20% 100%, 20% 100%;
+		background-position: 0 0, 100% 0, 100% 100%, 0 100%;
 	}
 	33% {
-		background-size: 20% 10%, 20% 100%, 20% 100%;
-	}
-	50% {
-		background-size: 20% 100%, 20% 10%, 20% 100%;
+		background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+		width: 60px;
+		height: 60px;
 	}
 	66% {
-		background-size: 20% 100%, 20% 100%, 20% 10%;
+		background-position: 100% 0, 100% 100%, 0 100%, 0 0;
+		width: 60px;
+		height: 60px;
 	}
 	100% {
-		background-size: 20% 100%, 20% 100%, 20% 100%;
+		background-position: 100% 0, 100% 100%, 0 100%, 0 0;
 	}
 }

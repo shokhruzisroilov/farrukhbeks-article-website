@@ -13,8 +13,8 @@ import {
 	DashboardArticleCard,
 	DashboardCreateArticle,
 	DashboardEditArticle,
-	FullScreenLoader,
-} from '../../components'
+} from '../../components/admin'
+import { FullScreenLoader } from '../../components'
 
 const DashboardArticles = () => {
 	const dispatch = useDispatch()

@@ -9,8 +9,9 @@ app.use(express.json())
 
 connectDB()
 
-app.use('/api', require('./routes/articles'))
 app.use('/api/auth', require('./routes/authRoutes'))
+app.use('/api/articles', require('./routes/articles'))
+app.use('/api/events', require('./routes/eventRoutes'))
 
 const PORT = process.env.PORT || 5000
 

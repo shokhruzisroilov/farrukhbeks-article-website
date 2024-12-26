@@ -4,12 +4,8 @@ import Layouts from './layouts/Layouts'
 import AdminLayout from './layouts/AdminLayout'
 import {
 	ArticleDetails,
-	Dashboard,
-	DashboardArticleDetails,
-	DashboardArticles,
-	DashboardEvents,
-	DashboardGrants,
-	DashboardUsers,
+	ArticlesPage,
+	EventDetails,
 	Events,
 	Grants,
 	Home,
@@ -17,19 +13,31 @@ import {
 	NotFound,
 	Register,
 } from './pages'
+import {
+	Dashboard,
+	DashboardArticleDetails,
+	DashboardArticles,
+	DashboardEventDetails,
+	DashboardEventForm,
+	DashboardEvents,
+	DashboardGrants,
+	DashboardUsers,
+} from './pages/admin'
 import PrivateRoute from './routes/PrivateRoute'
 import AdminRoute from './routes/AdminRoutes'
 
 const App = () => {
-	const { user, token } = useSelector(state => state.auth)
+	// const { user, token } = useSelector(state => state.auth)
 
 	return (
 		<Routes>
 			{/* Umumiy Layout */}
 			<Route path='/' element={<Layouts />}>
 				<Route index element={<Home />} />
+				<Route path='/articles' element={<ArticlesPage />} />
 				<Route path='/articles/:id' element={<ArticleDetails />} />
 				<Route path='/events' element={<Events />} />
+				<Route path='/events/:id' element={<EventDetails />} />
 				<Route path='/grants' element={<Grants />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />
@@ -46,7 +54,11 @@ const App = () => {
 					<Route index element={<Dashboard />} />
 					<Route path='articles' element={<DashboardArticles />} />
 					<Route path='articles/:id' element={<DashboardArticleDetails />} />
-					<Route path='events' element={<DashboardEvents />} />
+					{/* <Route path='events' element={<DashboardEvents />} /> */}
+					<Route path='/admin/events' element={<DashboardEvents />} />
+					<Route path='events/create' element={<DashboardEventForm />} />
+					<Route path='events/:id/edit' element={<DashboardEventForm />} />
+					<Route path='events/:id' element={<DashboardEventDetails />} />
 					<Route path='grants' element={<DashboardGrants />} />
 					<Route path='users' element={<DashboardUsers />} />
 				</Route>

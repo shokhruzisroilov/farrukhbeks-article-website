@@ -1,0 +1,8 @@
+export { default as Dashboard } from './Dashboard'
+export { default as DashboardArticles } from './DashboardArticles'
+export { default as DashboardGrants } from './DashboardGrants'
+export { default as DashboardUsers } from './DashboardUsers'
+export { default as DashboardArticleDetails } from './DashboardArticleDetails'
+export { default as DashboardEvents } from './DashboardEvents'
+export { default as DashboardEventForm } from './DashboardEventForm'
+export { default as DashboardEventDetails } from './DashboardEventDetails'

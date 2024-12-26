@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
-import { SidebarDashboard } from '../components'
+import { SidebarDashboard } from '../components/admin'
 
 const AdminLayout = () => {
 	return (

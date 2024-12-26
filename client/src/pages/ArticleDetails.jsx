@@ -3,97 +3,108 @@ import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import ArticleServices from '../services/articleServices'
 import {
+	FullScreenLoader,
+	ErrorMessage,
+	ScrollToTop,
+	Sidebar,
+} from '../components'
+import {
 	getArticlesStart,
 	getArticlesSuccess,
 	getArticlesFailure,
 } from '../store/slices/articlesSlice'
-import { FullScreenLoader } from '../components'
 
 const ArticleDetails = () => {
-	const { id } = useParams() // Extracting article ID from URL
+	const { id } = useParams()
 	const dispatch = useDispatch()
 	const { articles, loading, error } = useSelector(state => state.articles)
 
-	// Fetching article data when the component mounts or when the ID changes
+	// Maqolalarni olish
 	useEffect(() => {
-		const fetchArticle = async () => {
+		const fetchArticles = async () => {
 			dispatch(getArticlesStart())
 			try {
-				const article = await ArticleServices.getArticleById(id)
-				dispatch(getArticlesSuccess([article])) // Only fetch one article
+				const allArticles = await ArticleServices.getArticles() // Barcha maqolalarni olish
+				dispatch(getArticlesSuccess(allArticles)) // Maqolalarni store'ga qo'shish
 			} catch (err) {
-				dispatch(getArticlesFailure(err.message || 'Failed to load article'))
+				dispatch(getArticlesFailure(err.message || 'Maqolalar yuklanmadi'))
 			}
 		}
 
-		fetchArticle()
-	}, [id, dispatch])
+		if (articles.length === 0) {
+			fetchArticles() // Agar maqolalar mavjud bo'lmasa, fetch qilish
+		}
+	}, [dispatch, articles])
 
-	// Handling loading and error states
-	if (loading) return <FullScreenLoader />
-	if (error)
+	// Yuklanish holati
+	if (loading) {
 		return (
-			<div className='w-full min-h-screen bg-gray-50 flex items-center justify-center'>
-				<div className='text-center text-red-500 p-6 bg-white rounded-lg shadow-md'>
-					{error}
-				</div>
+			<div className='w-full min-h-screen flex items-center justify-center bg-gray-50'>
+				<FullScreenLoader />
 			</div>
 		)
+	}
 
-	// Finding the article based on the id
+	// Xatolik holati
+	if (error) {
+		return (
+			<div className='w-full min-h-screen flex items-center justify-center bg-gray-50'>
+				<ErrorMessage error={error} />
+			</div>
+		)
+	}
+
+	// Maqolani ID orqali topish
 	const article = articles.find(article => article._id === id)
 
-	// If no article is found
-	if (!article)
+	// Agar maqola topilmasa
+	if (!article) {
 		return (
-			<div className='w-full min-h-screen bg-gray-50 flex items-center justify-center'>
-				<div className='text-center text-gray-500 p-6 bg-white rounded-lg shadow-md'>
-					Article not found!
+			<div className='w-full min-h-screen flex items-center justify-center bg-gray-50'>
+				<div className='text-center text-gray-500 p-8 bg-white rounded-lg shadow-md'>
+					<h2 className='text-2xl font-bold mb-2'>Maqola topilmadi!</h2>
+					<p>Iltimos maqola ID sini tekshiring.</p>
 				</div>
 			</div>
 		)
+	}
 
-	// Render article details
+	// Maqola detallari
 	return (
-		<div className='w-full min-h-screen bg-gray-50 py-8'>
-			<div className='max-w-7xl mx-auto px-4'>
-				{/* Article Title */}
-				<h1 className='text-3xl font-bold text-gray-900 mb-4'>
-					{article.title}
-				</h1>
-
-				{/* Author and Date */}
-				<div className='flex justify-between text-sm text-gray-600 mb-4'>
-					<p>
-						<strong>Author:</strong> {article.author}
-					</p>
-					<p>
-						<strong>Published on:</strong>{' '}
-						{new Date(article.createdAt).toLocaleDateString()}
-					</p>
+		<div className='w-full min-h-screen mt-20 bg-gray-50'>
+			<ScrollToTop />
+			<div className='max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-4 gap-12'>
+				{/* Asosiy maqola */}
+				<div className='md:col-span-3'>
+					<h1 className='text-4xl font-extrabold text-gray-900 mb-6'>
+						{article.title}
+					</h1>
+					<div className='flex justify-between items-center text-sm text-gray-500 mb-4'>
+						<span className='bg-gray-200 px-3 py-1 rounded-md'>
+							<strong>{article.category}</strong>
+						</span>
+						<span>
+							<strong>Yaratilgan sana:</strong>{' '}
+							{new Date(article.createdAt).toLocaleDateString()}
+						</span>
+					</div>
+					{article.image && (
+						<div className='w-full mb-6'>
+							<img
+								src={article.image}
+								alt={article.title}
+								className='w-full max-h-[400px] object-cover rounded-lg shadow-md'
+							/>
+						</div>
+					)}
+					<div
+						className='prose prose-lg text-gray-800 leading-7'
+						dangerouslySetInnerHTML={{ __html: article.content }}
+					></div>
 				</div>
 
-				{/* Article Image */}
-				{article.image && (
-					<img
-						src={article.image}
-						alt={article.title}
-						className='w-full h-64 object-cover rounded-lg mb-6'
-					/>
-				)}
-
-				{/* Article Content */}
-				<div
-					className='text-lg text-gray-800 leading-relaxed'
-					dangerouslySetInnerHTML={{ __html: article.content }}
-				></div>
-
-				{/* Optional: Article Category */}
-				<div className='mt-6'>
-					<p className='font-semibold text-lg text-gray-700'>
-						Category: {article.category}
-					</p>
-				</div>
+				{/* So'nggi maqolalar sidebar */}
+				<Sidebar />
 			</div>
 		</div>
 	)

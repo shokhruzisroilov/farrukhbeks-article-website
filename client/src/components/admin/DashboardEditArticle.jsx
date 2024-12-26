@@ -10,6 +10,7 @@ import {
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import ArticleServices from '../../services/articleServices'
+import axios from 'axios'
 
 const DashboardEditArticle = ({
 	isOpen,
@@ -28,6 +29,7 @@ const DashboardEditArticle = ({
 	const [image, setImage] = useState('')
 	const [category, setCategory] = useState('')
 	const [tags, setTags] = useState('')
+	const [imageFile, setImageFile] = useState(null) // To store the image file
 
 	const categories = [
 		'Biznes',
@@ -49,13 +51,49 @@ const DashboardEditArticle = ({
 		}
 	}, [isOpen, article])
 
+	// Handle image file change
+	const handleImageChange = e => {
+		setImageFile(e.target.files[0]) // Set the selected file
+	}
+
+	// Upload image to Cloudinary
+	const uploadImageToCloudinary = async file => {
+		const formData = new FormData()
+		formData.append('file', file)
+		formData.append('upload_preset', 'tedgqry3') // Replace with your Cloudinary preset
+		formData.append('cloud_name', 'dj3epjudt') // Replace with your Cloudinary cloud name
+
+		try {
+			const response = await axios.post(
+				'https://api.cloudinary.com/v1_1/dj3epjudt/image/upload',
+				formData
+			)
+			return response.data.secure_url // Return the uploaded image URL
+		} catch (error) {
+			console.error('Error uploading image:', error)
+			toast.error('Rasm yuklashda xato yuz berdi')
+			throw error
+		}
+	}
+
 	// Handle form submission
 	const handleSubmit = async e => {
 		e.preventDefault()
 
+		let imageUrl = image // If no new image is selected, use the existing one
+
+		if (imageFile) {
+			try {
+				// Upload new image to Cloudinary
+				imageUrl = await uploadImageToCloudinary(imageFile)
+			} catch (error) {
+				return // Exit if image upload fails
+			}
+		}
+
 		const updatedArticleData = {
 			title,
-			image,
+			image: imageUrl,
 			category,
 			content,
 			tags: tags.split(',').map(tag => tag.trim()),
@@ -98,13 +136,11 @@ const DashboardEditArticle = ({
 						className='border p-2 rounded-md'
 					/>
 
-					{/* Image URL Input */}
+					{/* Image File Input */}
 					<input
-						type='text'
-						placeholder='Rasm URL'
-						name='image'
-						value={image}
-						onChange={e => setImage(e.target.value)}
+						type='file'
+						accept='image/*'
+						onChange={handleImageChange}
 						className='border p-2 rounded-md'
 					/>
 

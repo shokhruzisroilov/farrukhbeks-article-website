@@ -10,6 +10,7 @@ import {
 import ArticleServices from '../../services/articleServices'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import axios from 'axios' // Make sure axios is installed
 
 const DashboardCreateArticle = ({ isOpen, onClose, fetchArticlesData }) => {
 	const [content, setContent] = useState('')
@@ -17,21 +18,47 @@ const DashboardCreateArticle = ({ isOpen, onClose, fetchArticlesData }) => {
 	const [image, setImage] = useState('')
 	const [category, setCategory] = useState('')
 	const [tags, setTags] = useState('')
+	const [imageUploading, setImageUploading] = useState(false)
 
 	const dispatch = useDispatch()
 	const { loading } = useSelector(state => state.articles)
 
 	// Predefined list of categories
 	const categories = [
-		'Biznes',
+		'Barchasi',
 		'Iqtisodiyot',
-		"Fan va Ta'lim",
-		'Falsafa',
-		'Miya Ilmi',
-		'Siyosat',
+		'Makroiqtisod',
+		'Mikroiqtisod',
+		'Xalqaro',
+		'Moliya',
+		'Raqamli',
 	]
 
 	if (!isOpen) return null
+
+	// Function to handle image upload to Cloudinary
+	const handleImageUpload = async e => {
+		const file = e.target.files[0]
+		if (file) {
+			const formData = new FormData()
+			formData.append('file', file)
+			formData.append('upload_preset', 'tedgqry3') // replace with your Cloudinary upload preset
+
+			setImageUploading(true)
+			try {
+				// Upload image to Cloudinary
+				const response = await axios.post(
+					`https://api.cloudinary.com/v1_1/dj3epjudt/image/upload`,
+					formData
+				)
+				setImage(response.data.secure_url) // Set the Cloudinary URL in state
+				setImageUploading(false)
+			} catch (error) {
+				toast.error('Rasmni yuklashda xato yuz berdi.')
+				setImageUploading(false)
+			}
+		}
+	}
 
 	const handleSubmit = async e => {
 		e.preventDefault()
@@ -84,14 +111,23 @@ const DashboardCreateArticle = ({ isOpen, onClose, fetchArticlesData }) => {
 						onChange={e => setTitle(e.target.value)}
 						className='border p-2 rounded-md'
 					/>
+
+					{/* Image Upload */}
 					<input
-						type='text'
-						placeholder='Rasm URL'
-						name='image'
-						value={image}
-						onChange={e => setImage(e.target.value)}
+						type='file'
+						accept='image/*'
+						onChange={handleImageUpload}
 						className='border p-2 rounded-md'
 					/>
+					{image && (
+						<img
+							src={image}
+							alt='Uploaded'
+							className='my-4 max-w-full h-auto'
+						/>
+					)}
+					{imageUploading && <p>Rasm yuklanmoqda...</p>}
+
 					{/* Dropdown for categories */}
 					<select
 						name='category'
@@ -140,7 +176,7 @@ const DashboardCreateArticle = ({ isOpen, onClose, fetchArticlesData }) => {
 						<button
 							type='submit'
 							className='bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md'
-							disabled={loading}
+							disabled={loading || imageUploading}
 						>
 							{loading ? 'Yaratilyapti...' : '✅ Saqlash'}
 						</button>

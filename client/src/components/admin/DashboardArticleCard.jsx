@@ -11,7 +11,7 @@ const DashboardArticleCard = ({ article, onDeleteClick, onEditClick }) => {
 			day: 'numeric',
 			hour: '2-digit',
 			minute: '2-digit',
-			hour12: true, // Use 12-hour clock (AM/PM)
+			hour12: true,
 		})
 	}
 

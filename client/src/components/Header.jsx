@@ -33,6 +33,7 @@ const Header = () => {
 	// navItems
 	const navItems = [
 		{ path: '/', link: 'Bosh sahifa' },
+		{ path: '/articles', link: 'Maqolalar' },
 		{ path: '/events', link: 'Tadbirlar' },
 		{ path: '/grants', link: 'Grantlar' },
 	]

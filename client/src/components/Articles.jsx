@@ -5,11 +5,11 @@ import {
 	getArticlesSuccess,
 	getArticlesFailure,
 } from '../store/slices/articlesSlice'
+import ArticleServices from '../services/articleServices'
 import FullScreenLoader from './FullScreenLoader'
 import ErrorMessage from './ErrorMessage'
-import ArticleServices from '../services/articleServices'
-import ArticleCard from './ArticleCard'
 import CategorySelection from './CategorySelection'
+import ArticleCard from './ArticleCard'
 import SlideBar from './SlideBar'
 
 const Articles = () => {
@@ -20,14 +20,15 @@ const Articles = () => {
 
 	const categories = [
 		'Barchasi',
-		'Biznes',
 		'Iqtisodiyot',
-		"Fan va Ta'lim",
-		'Falsafa',
-		'Miya Ilmi',
-		'Siyosat',
+		'Makroiqtisod',
+		'Mikroiqtisod',
+		'Xalqaro',
+		'Moliya',
+		'Raqamli',
 	]
 
+	// Get Articles
 	useEffect(() => {
 		const fetchArticlesData = async () => {
 			dispatch(getArticlesStart())
@@ -48,6 +49,7 @@ const Articles = () => {
 		}
 	}, [articles])
 
+	// Select Category
 	const handleCategoryChange = selectedCategory => {
 		if (selectedCategory === 'Barchasi') {
 			setFilteredArticles(articles)

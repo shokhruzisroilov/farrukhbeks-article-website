@@ -22,18 +22,6 @@ const articlesSlice = createSlice({
 			state.loading = false
 			state.error = action.payload
 		},
-		getArticleStart: state => {
-			state.loading = true
-			state.error = null
-		},
-		getArticleSuccess: (state, action) => {
-			state.loading = false
-			state.articles = [action.payload] // Faqat bitta maqola
-		},
-		getArticleFailure: (state, action) => {
-			state.loading = false
-			state.error = action.payload
-		},
 		createArticleStart: state => {
 			state.loading = true
 			state.error = null

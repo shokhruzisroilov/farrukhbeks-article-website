@@ -1,6 +1,14 @@
 import { Link } from 'react-router-dom'
 
-const ArticleCard = ({ id, title, image, content, createdAt, category }) => {
+const EventCard = ({
+	id,
+	title,
+	image,
+	description,
+	location,
+	speakers,
+	createdAt,
+}) => {
 	// Content cut function
 	const truncateText = (text, wordLimit) => {
 		const words = text.split(' ')
@@ -12,10 +20,10 @@ const ArticleCard = ({ id, title, image, content, createdAt, category }) => {
 
 	// Date format
 	const formatDate = dateString => {
-		if (!dateString) return 'Noma’lum sana'
+		if (!dateString) return 'N/A'
 
 		const date = new Date(dateString)
-		if (isNaN(date)) return 'Noto‘g‘ri sana formati'
+		if (isNaN(date)) return 'Invalid Date Format'
 
 		return date.toLocaleString('en-US', {
 			month: 'short',
@@ -28,7 +36,7 @@ const ArticleCard = ({ id, title, image, content, createdAt, category }) => {
 	}
 
 	return (
-		<Link to={`/articles/${id}`} className='p-5 shadow-lg rounded-lg bg-white'>
+		<Link to={`/events/${id}`} className='p-5 shadow-lg rounded-lg bg-white'>
 			<div>
 				<img
 					src={image}
@@ -37,7 +45,7 @@ const ArticleCard = ({ id, title, image, content, createdAt, category }) => {
 				/>
 			</div>
 			<div className='flex justify-between items-center mt-2'>
-				<p className='text-sm text-[#fc3c1a]'> {category}</p>
+				<p className='text-sm text-[#fc3c1a]'>{location}</p>
 				<p className='text-sm text-gray-500'>{formatDate(createdAt)}</p>
 			</div>
 			<h3 className='mt-2 mb-2 text-xl font-semibold text-gray-800 hover:text-blue-600 transition-colors'>
@@ -45,10 +53,13 @@ const ArticleCard = ({ id, title, image, content, createdAt, category }) => {
 			</h3>
 			<p
 				className='mb-2 text-gray-600 text-sm'
-				dangerouslySetInnerHTML={{ __html: truncateText(content, 10) }}
+				dangerouslySetInnerHTML={{ __html: truncateText(description, 10) }}
 			/>
+			<p className='text-sm text-gray-500'>
+				Speakers: {truncateText(speakers, 5)}
+			</p>
 		</Link>
 	)
 }
 
-export default ArticleCard
+export default EventCard
