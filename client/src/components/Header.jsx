@@ -34,9 +34,9 @@ const Header = () => {
 	// navItems
 	const navItems = [
 		{ path: '/', link: 'Bosh sahifa' },
-		{ path: '/articles', link: 'Iqtisodiyot maqolalar' },
-		{ path: '/events', link: 'Iqtisodiyot tadbirlar' },
-		{ path: '/terms', link: 'Iqtisodiyot atamalar' },
+		{ path: '/articles', link: 'Iqtisodiyot maqolalari' },
+		{ path: '/events', link: 'Iqtisodiyot tadbirlari' },
+		{ path: '/terms', link: 'Iqtisodiyot atamalari' },
 	]
 
 	return (
