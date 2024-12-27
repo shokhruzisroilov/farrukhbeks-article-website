@@ -2,9 +2,26 @@ const express = require('express')
 const cors = require('cors')
 const connectDB = require('./config/db')
 require('dotenv').config()
-
 const app = express()
-app.use(cors())
+
+const allowedOrigins = [
+	// 'http://localhost:5173',
+	'https://www.investiq.uz',
+	'https://farrukhbek-article-website.vercel.app',
+]
+app.use(
+	cors({
+		origin: function (origin, callback) {
+			if (!origin || allowedOrigins.includes(origin)) {
+				callback(null, true)
+			} else {
+				callback(new Error('❌ Not allowed by CORS'))
+			}
+		},
+		credentials: true,
+	})
+)
+
 app.use(express.json())
 
 connectDB()
