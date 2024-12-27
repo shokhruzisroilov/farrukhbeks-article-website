@@ -3,22 +3,22 @@ import { FaArrowRight } from 'react-icons/fa6'
 
 const Banner = () => {
 	return (
-		<div className='px-4 py-32 bg-black m-auto'>
+		<div className='px-6 py-36 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 m-auto'>
 			<div className='text-white text-center'>
-				<h1 className='text-5xl lg:text-7xl leading-snug font-bold mb-5'>
-					Iqtisodiyot va Biznes Dunyosi
+				<h1 className='text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6'>
+					Iqtisodiyot Sohasidagi Eng Yangi Ma'lumotlar
 				</h1>
-				<p className='text-gray-100 lg:w-3/5 mx-auto mb-5 font-primary'>
-					Iqtisodiy o'zgarishlar, muvaffaqiyatli biznes strategiyalari va
-					iqtisodiy tahlillarni kəshf eting. O'z biznesingizni rivojlantirish
-					uchun zarur bilimlarni toping.
+				<p className='text-gray-200 lg:w-3/4 mx-auto mb-8 font-medium text-lg'>
+					Iqtisodiyotdagi so'nggi yangiliklar, maqolalar va tadbirlar bilan
+					tanishing. Eng yangi iqtisodiy tahlillarni o'qib, bilimlaringizni
+					oshiring va tahlil qobiliyatingizni rivojlantiring.
 				</p>
-				<div>
+				<div className='flex justify-center'>
 					<Link
-						to='/'
-						className='font-medium hover:text-orange-500 inline-flex items-center py-1'
+						to='/articles' // Maqolalar bo'limiga yo'naltiradi
+						className='bg-orange-500 text-white font-semibold py-3 px-6 rounded-lg text-lg inline-flex items-center hover:bg-orange-600 transition-colors duration-300'
 					>
-						Ko'proq Bilish <FaArrowRight className='mt-1 ml-2' />
+						Ko'proq bilish <FaArrowRight className='mt-1 ml-2' />
 					</Link>
 				</div>
 			</div>

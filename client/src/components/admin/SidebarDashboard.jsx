@@ -84,7 +84,7 @@ const SidebarDashboard = () => {
 
 					{/* Grants link */}
 					<NavLink
-						to='/admin/grants'
+						to='/admin/terms'
 						className={({ isActive }) =>
 							`block px-4 py-4 hover:bg-gray-700 cursor-pointer rounded-md ${
 								isActive ? 'bg-gray-700' : ''
@@ -92,7 +92,7 @@ const SidebarDashboard = () => {
 						}
 						onClick={toggleSidebar}
 					>
-						<li>🏅 Gratlar</li>
+						<li>🏅 Atamalar</li>
 					</NavLink>
 
 					{/* Users link */}

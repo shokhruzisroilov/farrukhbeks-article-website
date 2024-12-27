@@ -12,6 +12,8 @@ import {
 	Login,
 	NotFound,
 	Register,
+	TermDetails,
+	TermsPage,
 } from './pages'
 import {
 	Dashboard,
@@ -21,10 +23,13 @@ import {
 	DashboardEventForm,
 	DashboardEvents,
 	DashboardGrants,
+	DashboardTermDetails,
+	DashboardTerms,
 	DashboardUsers,
 } from './pages/admin'
 import PrivateRoute from './routes/PrivateRoute'
 import AdminRoute from './routes/AdminRoutes'
+import DashboardTermForm from './pages/admin/DashboardTermForm'
 
 const App = () => {
 	// const { user, token } = useSelector(state => state.auth)
@@ -38,6 +43,8 @@ const App = () => {
 				<Route path='/articles/:id' element={<ArticleDetails />} />
 				<Route path='/events' element={<Events />} />
 				<Route path='/events/:id' element={<EventDetails />} />
+				<Route path='/terms' element={<TermsPage />} />
+				<Route path='/terms/:id' element={<TermDetails />} />
 				<Route path='/grants' element={<Grants />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />
@@ -59,6 +66,10 @@ const App = () => {
 					<Route path='events/create' element={<DashboardEventForm />} />
 					<Route path='events/:id/edit' element={<DashboardEventForm />} />
 					<Route path='events/:id' element={<DashboardEventDetails />} />
+					<Route path='/admin/terms' element={<DashboardTerms />} />
+					<Route path='terms/create' element={<DashboardTermForm />} />
+					<Route path='terms/:id/edit' element={<DashboardTermForm />} />
+					<Route path='terms/:id' element={<DashboardTermDetails />} />
 					<Route path='grants' element={<DashboardGrants />} />
 					<Route path='users' element={<DashboardUsers />} />
 				</Route>

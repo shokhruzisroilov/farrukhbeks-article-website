@@ -33,9 +33,9 @@ const Header = () => {
 	// navItems
 	const navItems = [
 		{ path: '/', link: 'Bosh sahifa' },
-		{ path: '/articles', link: 'Maqolalar' },
-		{ path: '/events', link: 'Tadbirlar' },
-		{ path: '/grants', link: 'Grantlar' },
+		{ path: '/articles', link: 'Iqtisodiyot maqolalar' },
+		{ path: '/events', link: 'Iqtisodiyot tadbirlar' },
+		{ path: '/terms', link: 'Iqtisodiyot atamalar' },
 	]
 
 	return (
@@ -46,7 +46,7 @@ const Header = () => {
 				</Link>
 
 				{/* Nav items for larger devices */}
-				<ul className='md:flex gap-12 text-lg hidden'>
+				<ul className='lg:flex gap-12 text-lg hidden'>
 					{navItems.map(item => (
 						<li className='text-white' key={item.path}>
 							<NavLink
@@ -85,7 +85,7 @@ const Header = () => {
 				</div>
 
 				{/* Mobile menu button and profile icon */}
-				<div className='md:hidden flex items-center gap-4'>
+				<div className='lg:hidden flex items-center gap-4'>
 					{/* Profile icon for mobile */}
 					{user ? (
 						<UserProfile user={user} handleLogout={handleLogout} />
@@ -111,7 +111,7 @@ const Header = () => {
 			{/* Mobile menu items */}
 			<div>
 				<ul
-					className={`md:hidden gap-12 text-lg space-y-4 px-4 py-6 bg-white transition-all ease-in-out duration-300 ${
+					className={`lg:hidden gap-12 text-lg space-y-4 px-4 py-6 bg-white transition-all ease-in-out duration-300 ${
 						isMenuOpen ? 'block' : 'hidden'
 					}`}
 				>

@@ -7,7 +7,6 @@ import { ErrorMessage, FullScreenLoader } from '../components'
 const Events = () => {
 	const dispatch = useDispatch()
 	const { events, loading, error } = useSelector(state => state.events)
-	console.log(events)
 
 	useEffect(() => {
 		dispatch(fetchEvents())

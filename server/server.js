@@ -12,6 +12,7 @@ connectDB()
 app.use('/api/auth', require('./routes/authRoutes'))
 app.use('/api/articles', require('./routes/articles'))
 app.use('/api/events', require('./routes/eventRoutes'))
+app.use('/api/terms', require('./routes/termRoutes'))
 
 const PORT = process.env.PORT || 5000
 
