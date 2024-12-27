@@ -61,9 +61,15 @@ const EventsPreview = () => {
 								: event.title}
 						</h3>
 						<p className='text-sm text-gray-600 mt-2'>
-							{event.description.length > 100
-								? `${event.description.substring(0, 100)}...`
-								: event.description}
+							{event.description.length > 100 ? (
+								<span
+									dangerouslySetInnerHTML={{
+										__html: event.description.substring(0, 100),
+									}}
+								/>
+							) : (
+								<span dangerouslySetInnerHTML={{ __html: event.description }} />
+							)}
 						</p>
 						<Link
 							to={`/events/${event._id}`}

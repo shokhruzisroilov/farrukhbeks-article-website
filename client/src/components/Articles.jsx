@@ -21,8 +21,8 @@ const Articles = () => {
 	const categories = [
 		'Barchasi',
 		'Iqtisodiyot',
-		'Makroiqtisod',
-		'Mikroiqtisod',
+		'Makroiqtisodiyot',
+		'Mikroiqtisodiyot',
 		'Xalqaro',
 		'Moliya',
 		'Raqamli',

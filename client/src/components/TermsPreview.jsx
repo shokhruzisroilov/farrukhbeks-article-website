@@ -61,9 +61,15 @@ const TermsPreview = () => {
 								: term.title}
 						</h3>
 						<p className='text-sm text-gray-600 mt-2'>
-							{term.description.length > 100
-								? `${term.description.substring(0, 100)}...`
-								: term.description}
+							{term.description.length > 100 ? (
+								<span
+									dangerouslySetInnerHTML={{
+										__html: term.description.substring(0, 100),
+									}}
+								/>
+							) : (
+								<span dangerouslySetInnerHTML={{ __html: term.description }} />
+							)}
 						</p>
 						<Link
 							to={`/terms/${term._id}`}

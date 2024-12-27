@@ -27,8 +27,8 @@ const DashboardCreateArticle = ({ isOpen, onClose, fetchArticlesData }) => {
 	const categories = [
 		'Barchasi',
 		'Iqtisodiyot',
-		'Makroiqtisod',
-		'Mikroiqtisod',
+		'Makroiqtisodiyot',
+		'Mikroiqtisodiyot',
 		'Xalqaro',
 		'Moliya',
 		'Raqamli',

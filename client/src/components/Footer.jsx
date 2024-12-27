@@ -4,6 +4,13 @@ import { FaXTwitter } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
+	// Telegram kanallarini ochish
+	const openTelegramChannels = () => {
+		window.open('https://t.me/your_channel_1', '_blank')
+		window.open('https://t.me/your_channel_2', '_blank')
+		window.open('https://t.me/your_channel_3', '_blank')
+	}
+
 	return (
 		<div className='bg-gray-900 mt-8'>
 			<div className='px-4 py-16 m-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-4'>
@@ -25,15 +32,23 @@ const Footer = () => {
 									to='/events'
 									className='text-gray-400 transition-colors duration-300 hover:text-orange-500'
 								>
-									Tadbirlar
+									Iqtisodiyot maqolalar
 								</Link>
 							</li>
 							<li>
 								<Link
-									to='/grants'
+									to='/events'
 									className='text-gray-400 transition-colors duration-300 hover:text-orange-500'
 								>
-									Grantlar
+									Iqtisodiyot tadbirlar
+								</Link>
+							</li>
+							<li>
+								<Link
+									to='/events'
+									className='text-gray-400 transition-colors duration-300 hover:text-orange-500'
+								>
+									Iqtisodiyot atamalar
 								</Link>
 							</li>
 						</ul>
@@ -92,14 +107,6 @@ const Footer = () => {
 									Shartlar va siyosat
 								</a>
 							</li>
-							<li>
-								<a
-									href='#'
-									className='text-gray-400 transition-colors duration-300 hover:text-orange-500'
-								>
-									Faqat
-								</a>
-							</li>
 						</ul>
 					</div>
 
@@ -129,6 +136,7 @@ const Footer = () => {
 								<a
 									href='/'
 									className='text-gray-400 hover:text-orange-500 transition-colors duration-300'
+									onClick={openTelegramChannels} // Telegram ikonasini bosganda 3 ta kanalni ochadi
 								>
 									<FaTelegramPlane size={30} />
 								</a>

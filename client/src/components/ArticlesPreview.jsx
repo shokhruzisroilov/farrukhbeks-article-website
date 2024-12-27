@@ -79,9 +79,15 @@ const ArticlesPreview = () => {
 								: article.title}
 						</h3>
 						<p className='text-sm text-gray-600 mt-2'>
-							{article.content.length > 100
-								? `${article.content.substring(0, 100)}...`
-								: article.content}
+							{article.content.length > 100 ? (
+								<span
+									dangerouslySetInnerHTML={{
+										__html: article.content.substring(0, 100),
+									}}
+								/>
+							) : (
+								<span dangerouslySetInnerHTML={{ __html: article.content }} />
+							)}
 						</p>
 						<Link
 							to={`/articles/${article._id}`}
