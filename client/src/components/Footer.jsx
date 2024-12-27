@@ -4,13 +4,6 @@ import { FaXTwitter } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
-	// Telegram kanallarini ochish
-	const openTelegramChannels = () => {
-		window.open('https://t.me/your_channel_1', '_blank')
-		window.open('https://t.me/your_channel_2', '_blank')
-		window.open('https://t.me/your_channel_3', '_blank')
-	}
-
 	return (
 		<div className='bg-gray-900 mt-8'>
 			<div className='px-4 py-16 m-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-4'>
@@ -22,6 +15,8 @@ const Footer = () => {
 							<li>
 								<Link
 									to='/'
+									target='_blank'
+									rel='noopener noreferrer'
 									className='text-gray-400 transition-colors duration-300 hover:text-orange-500'
 								>
 									Bosh sahifa
@@ -30,6 +25,8 @@ const Footer = () => {
 							<li>
 								<Link
 									to='/events'
+									target='_blank'
+									rel='noopener noreferrer'
 									className='text-gray-400 transition-colors duration-300 hover:text-orange-500'
 								>
 									Iqtisodiyot maqolalar
@@ -38,6 +35,8 @@ const Footer = () => {
 							<li>
 								<Link
 									to='/events'
+									target='_blank'
+									rel='noopener noreferrer'
 									className='text-gray-400 transition-colors duration-300 hover:text-orange-500'
 								>
 									Iqtisodiyot tadbirlar
@@ -46,6 +45,8 @@ const Footer = () => {
 							<li>
 								<Link
 									to='/events'
+									target='_blank'
+									rel='noopener noreferrer'
 									className='text-gray-400 transition-colors duration-300 hover:text-orange-500'
 								>
 									Iqtisodiyot atamalar
@@ -61,6 +62,8 @@ const Footer = () => {
 							<li>
 								<a
 									href='#'
+									target='_blank'
+									rel='noopener noreferrer'
 									className='text-gray-400 transition-colors duration-300 hover:text-orange-500'
 								>
 									Xizmatlar
@@ -69,6 +72,8 @@ const Footer = () => {
 							<li>
 								<a
 									href='#'
+									target='_blank'
+									rel='noopener noreferrer'
 									className='text-gray-400 transition-colors duration-300 hover:text-orange-500'
 								>
 									Bizning jamoa
@@ -77,6 +82,8 @@ const Footer = () => {
 							<li>
 								<a
 									href='#'
+									target='_blank'
+									rel='noopener noreferrer'
 									className='text-gray-400 transition-colors duration-300 hover:text-orange-500'
 								>
 									Kontaktlar
@@ -94,6 +101,8 @@ const Footer = () => {
 							<li>
 								<a
 									href='#'
+									target='_blank'
+									rel='noopener noreferrer'
 									className='text-gray-400 transition-colors duration-300 hover:text-orange-500'
 								>
 									Yordam
@@ -102,6 +111,8 @@ const Footer = () => {
 							<li>
 								<a
 									href='#'
+									target='_blank'
+									rel='noopener noreferrer'
 									className='text-gray-400 transition-colors duration-300 hover:text-orange-500'
 								>
 									Shartlar va siyosat
@@ -119,6 +130,8 @@ const Footer = () => {
 							<li>
 								<a
 									href='/'
+									target='_blank'
+									rel='noopener noreferrer'
 									className='text-gray-400 hover:text-orange-500 transition-colors duration-300'
 								>
 									<FaFacebookF size={30} />
@@ -127,6 +140,8 @@ const Footer = () => {
 							<li>
 								<a
 									href='/'
+									target='_blank'
+									rel='noopener noreferrer'
 									className='text-gray-400 hover:text-orange-500 transition-colors duration-300'
 								>
 									<FaInstagram size={30} />
@@ -134,9 +149,10 @@ const Footer = () => {
 							</li>
 							<li>
 								<a
-									href='/'
+									href='https://t.me/investIQuz'
+									target='_blank'
+									rel='noopener noreferrer'
 									className='text-gray-400 hover:text-orange-500 transition-colors duration-300'
-									onClick={openTelegramChannels} // Telegram ikonasini bosganda 3 ta kanalni ochadi
 								>
 									<FaTelegramPlane size={30} />
 								</a>
@@ -144,6 +160,8 @@ const Footer = () => {
 							<li>
 								<a
 									href='/'
+									target='_blank'
+									rel='noopener noreferrer'
 									className='text-gray-400 hover:text-orange-500 transition-colors duration-300'
 								>
 									<FaXTwitter size={30} />

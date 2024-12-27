@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import UserProfile from './UserProfile'
 import { logout } from '../store/slices/authSlice'
+import logo from '../assets/icons/logo.png'
 
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -39,11 +40,21 @@ const Header = () => {
 	]
 
 	return (
-		<header className='bg-black text-white fixed top-0 left-0 right-0'>
+		<header className='bg-black text-white fixed top-0 left-0 right-0 z-50'>
 			<nav className='px-4 py-4 max-w-7xl mx-auto flex justify-between items-center'>
-				<Link to='/' className='text-xl font-bold text-white'>
-					Farrukhbek<span className='text-orange-500'>UZ</span>
-				</Link>
+				{/* Logo va nom bir qatorda */}
+				<div className='flex items-center gap-2'>
+					<Link to='/'>
+						<img
+							src={logo}
+							alt='Logo'
+							className='w-12 h-12 object-cover rounded-full'
+						/>
+					</Link>
+					<Link to='/' className='text-xl font-bold text-white'>
+						InvestIQ<span className='text-orange-500'>UZ</span>
+					</Link>
+				</div>
 
 				{/* Nav items for larger devices */}
 				<ul className='lg:flex gap-12 text-lg hidden'>
@@ -61,16 +72,36 @@ const Header = () => {
 
 				{/* Menu icons for larger devices */}
 				<div className='text-white lg:flex gap-4 items-center hidden'>
-					<a href='/' className='hover:text-orange-500'>
+					<a
+						href='/'
+						className='hover:text-orange-500'
+						target='_blank'
+						rel='noopener noreferrer'
+					>
 						<FaFacebook />
 					</a>
-					<a href='/' className='hover:text-orange-500'>
+					<a
+						href='/'
+						className='hover:text-orange-500'
+						target='_blank'
+						rel='noopener noreferrer'
+					>
 						<FaInstagram />
 					</a>
-					<a href='/' className='hover:text-orange-500'>
+					<a
+						href='https://t.me/investIQuz'
+						className='hover:text-orange-500'
+						target='_blank'
+						rel='noopener noreferrer'
+					>
 						<FaTelegram />
 					</a>
-					<a href='/' className='hover:text-orange-500'>
+					<a
+						href='/'
+						className='hover:text-orange-500'
+						target='_blank'
+						rel='noopener noreferrer'
+					>
 						<FaTwitter />
 					</a>
 					{user ? (
