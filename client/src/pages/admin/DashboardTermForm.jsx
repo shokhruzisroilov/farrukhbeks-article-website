@@ -83,7 +83,7 @@ const DashboardTermForm = () => {
 	return (
 		<div className='w-full mx-auto p-6 bg-white'>
 			<h1 className='text-2xl font-bold mb-4'>
-				{id ? 'Shartnoma tahrirlash' : 'Shartnoma yaratish'}
+				{id ? 'Atamani tahrirlash' : 'Atama yaratish'}
 			</h1>
 			<form onSubmit={handleSubmit} className='space-y-4'>
 				<div>
@@ -94,7 +94,7 @@ const DashboardTermForm = () => {
 						value={formData.title}
 						onChange={handleChange}
 						className='w-full mt-2 p-2 border border-gray-300 rounded'
-						placeholder='Shartnoma nomini kiriting'
+						placeholder='Atama nomini kiriting'
 					/>
 				</div>
 				<div>
@@ -103,7 +103,7 @@ const DashboardTermForm = () => {
 						value={formData.description}
 						onChange={value => setFormData({ ...formData, description: value })}
 						className='mt-2 p-2 border border-gray-300 rounded'
-						placeholder='Shartnoma tavsifini kiriting'
+						placeholder='Atama tavsifini kiriting'
 					/>
 				</div>
 				<div>
@@ -129,7 +129,7 @@ const DashboardTermForm = () => {
 						type='submit'
 						className='w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600 transition'
 					>
-						{id ? 'Shartnomani yangilash' : 'Shartnoma yaratish'}
+						{id ? 'Atamani yangilash' : 'Atama yaratish'}
 					</button>
 					<button
 						type='button'
