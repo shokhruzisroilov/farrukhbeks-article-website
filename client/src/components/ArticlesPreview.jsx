@@ -48,7 +48,7 @@ const ArticlesPreview = () => {
 	}
 
 	// Show the last 3 events
-	const lastThreeActicles = articles.slice().reverse().slice(0, 3)
+	const lastThreeActicles = articles.slice(0, 3)
 
 	return (
 		<div className=' grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
