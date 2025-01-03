@@ -3,6 +3,7 @@ import articlesReducer from './slices/articlesSlice'
 import authReducer from './slices/authSlice'
 import eventsReducer from './slices/eventSlice'
 import termsReducer from './slices/termSlice'
+import userReducer from './slices/userSlice'
 
 const store = configureStore({
 	reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
 		auth: authReducer,
 		events: eventsReducer,
 		terms: termsReducer,
+		users: userReducer,
 	},
 	devTools: process.env.NODE_ENV !== 'production',
 })

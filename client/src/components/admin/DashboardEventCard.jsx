@@ -12,6 +12,9 @@ const DashboardEventCard = ({ event, onDelete }) => {
 		return text
 	}
 
+	// Truncate sanitized description after 10 words
+	const truncatedDescription = truncateText(sanitizedDescription, 10)
+
 	// Date format
 	const formatDate = dateString => {
 		if (!dateString) return 'Ma’lumot mavjud emas'
@@ -60,7 +63,7 @@ const DashboardEventCard = ({ event, onDelete }) => {
 					{/* Description */}
 					<p
 						className='text-gray-700 text-sm md:text-base mb-4'
-						dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+						dangerouslySetInnerHTML={{ __html: truncatedDescription }}
 					></p>
 				</div>
 			</Link>

@@ -17,6 +17,7 @@ const Dashboard = () => {
 	const { articles } = useSelector(state => state.articles)
 	const { events } = useSelector(state => state.events)
 	const { terms } = useSelector(state => state.terms)
+	const { users } = useSelector(state => state.users) // Fetch users from Redux state
 
 	// Helper function to get the month from a date string (e.g. '2024-01-15' -> 'Yanvar')
 	const getMonthName = dateString => {
@@ -150,6 +151,9 @@ const Dashboard = () => {
 					<h3 className='text-xl font-semibold text-white'>
 						Umumiy Foydalanuvchilar
 					</h3>
+					<p className='text-3xl font-bold text-white'>
+						{users.length} {/* Displaying the dynamic totalUsers */}
+					</p>
 				</div>
 			</div>
 
